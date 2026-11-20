@@ -75,7 +75,7 @@ body {
   min-height: 74px;
 }
 
-/* ===== LOGO ===== */
+/* ===== LOGO (2560x1440 → 16:9) ===== */
 .logo {
   display: flex;
   align-items: center;
@@ -84,16 +84,16 @@ body {
 }
 
 .logo-img {
-  width: 54px;
-  height: 54px;
+  width: 128px;
+  height: 72px;
   object-fit: contain;
-  border-radius: 50%;
+  border-radius: 8px;
   filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.7));
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .logo:hover .logo-img {
-  transform: scale(1.06) rotate(-3deg);
+  transform: scale(1.05);
   filter: drop-shadow(0 0 18px var(--neon));
 }
 
@@ -109,7 +109,7 @@ body {
 /* ===== NAV LINKS (PC) ===== */
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 22px;
   align-items: center;
 }
 
@@ -117,7 +117,7 @@ body {
   color: var(--blanco);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   position: relative;
@@ -229,7 +229,7 @@ body {
 }
 
 .hero-content {
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -238,11 +238,11 @@ body {
   gap: 0;
 }
 
-/* ===== LOGO HERO ===== */
+/* ===== LOGO HERO (2560x1440 → 16:9) ===== */
 .hero-logo {
-  width: 240px;
-  height: 240px;
-  max-width: 70vw;
+  width: 640px;
+  height: 360px;
+  max-width: 85vw;
   object-fit: contain;
   margin: 0 auto 25px;
   display: block;
@@ -252,7 +252,7 @@ body {
 
 @keyframes logoPulse {
   0%, 100% { filter: drop-shadow(0 0 25px var(--neon)); transform: scale(1); }
-  50%      { filter: drop-shadow(0 0 40px var(--neon)); transform: scale(1.03); }
+  50%      { filter: drop-shadow(0 0 40px var(--neon)); transform: scale(1.02); }
 }
 
 .hero-subtitle {
@@ -360,14 +360,45 @@ body {
   transform: translateY(-2px);
 }
 
-/* Instagram */
 .social-btn.ig:hover {
   border-color: #e1306c;
   color: #e1306c;
   box-shadow: 0 0 8px rgba(225, 48, 108, 0.6);
 }
 
-/* ===== SERVICIOS (sin iconos) ===== */
+/* ===== SERVICIOS CON CALAVERA (941×1672 vertical) ===== */
+.servicios-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.servicios-col-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fotocalavera {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 2px solid rgba(57, 255, 20, 0.35);
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.25);
+  filter: brightness(0.9) contrast(1.1);
+  display: block;
+}
+
+.servicios-col-grid .services-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -437,10 +468,24 @@ body {
 
 .cortes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 22px;
   max-width: 1100px;
   width: 100%;
+}
+
+/* ===== TATUAJES: 2×2 SIMÉTRICO ===== */
+.tatuajes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tatuajes-grid .corte-card img {
+  height: 380px;
 }
 
 .corte-card {
@@ -637,7 +682,6 @@ body {
   color: var(--neon);
 }
 
-/* Instagram card */
 .social-card.ig:hover {
   border-color: #e1306c;
   box-shadow: 0 0 25px rgba(225, 48, 108, 0.35);
@@ -738,10 +782,9 @@ body {
 .banner-hero .section-bg      { background-image: url('img/banner1.png'); aspect-ratio: 16 / 9; }
 .banner-servicios .section-bg { background-image: url('img/banner2.jpg'); aspect-ratio: 16 / 9; }
 .banner-cortes .section-bg    { background-image: url('img/banner3.jpg'); aspect-ratio: 16 / 9; }
-.banner-horarios .section-bg  { background-image: url('img/banner4.jpg'); aspect-ratio: 16 / 9; }
+.banner-tatuajes .section-bg  { background-image: url('img/banner4.jpg'); aspect-ratio: 16 / 9; }
 .banner-agendar .section-bg   { background-image: url('img/banner2.jpg'); aspect-ratio: 16 / 9; }
 .banner-redes .section-bg     { background-image: url('img/banner3.jpg'); aspect-ratio: 16 / 9; }
-.banner-resena .section-bg    { background-image: url('img/banner4.jpg'); aspect-ratio: 16 / 9; }
 
 .section-banner:hover .section-bg {
   opacity: 0.8;
@@ -867,18 +910,49 @@ body {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width: 1200px) {
+  .servicios-layout {
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .hero-logo {
+    width: 540px;
+    height: 304px;
+  }
+  .fotocalavera {
+    max-width: 300px;
+    max-height: 540px;
+  }
+}
+
 @media (max-width: 900px) {
   .agendar-layout {
     grid-template-columns: 1fr;
     gap: 25px;
   }
+  .servicios-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .fotocalavera {
+    max-width: 280px;
+    max-height: 500px;
+  }
   .hero-logo {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 225px;
   }
   .logo-img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 56px;
+  }
+  .cortes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tatuajes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tatuajes-grid .corte-card img {
+    height: 300px;
   }
 }
 
@@ -890,11 +964,9 @@ body {
     justify-content: space-between;
   }
 
-  /* Logo y hamburguesa lado a lado */
   .logo { order: 1; }
   .nav-toggle { display: flex; order: 2; }
 
-  /* Menú desplegable */
   .nav-links {
     display: none;
     order: 3;
@@ -960,7 +1032,6 @@ body {
     max-width: 100%;
   }
 
-  /* Banners visibles en móvil */
   .section-bg {
     opacity: 0.65;
     filter: blur(6px) brightness(0.45) saturate(1.2);
@@ -982,17 +1053,25 @@ body {
   }
 
   .logo-img {
-    width: 44px;
-    height: 44px;
+    width: 80px;
+    height: 45px;
   }
 
   .hero-logo {
-    width: 170px;
-    height: 170px;
+    width: 300px;
+    height: 168px;
   }
 
   .cortes-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tatuajes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tatuajes-grid .corte-card img {
+    height: 260px;
   }
 
   .agendar-form {
@@ -1002,5 +1081,10 @@ body {
   .social-card-icon {
     width: 50px;
     height: 50px;
+  }
+
+  .fotocalavera {
+    max-width: 100%;
+    max-height: 480px;
   }
 }

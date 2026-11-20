@@ -178,11 +178,11 @@ function createWhatsAppFloat() {
 }
 
 /* ============================================================
-   5. LIGHTBOX PARA LA GALERÍA DE CORTES
+   5. LIGHTBOX PARA GALERÍA (cortes + tatuajes)
    ============================================================ */
 function initLightbox() {
-  const corteImages = document.querySelectorAll('.corte-card img');
-  if (!corteImages.length) return;
+  const galeriaImages = document.querySelectorAll('.corte-card img');
+  if (!galeriaImages.length) return;
 
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
@@ -190,7 +190,7 @@ function initLightbox() {
   lightbox.innerHTML = `
     <span class="lightbox-close" aria-label="Cerrar">&times;</span>
     <span class="lightbox-prev" aria-label="Anterior">&#10094;</span>
-    <img class="lightbox-img" src="" alt="Corte ampliado" />
+    <img class="lightbox-img" src="" alt="Imagen ampliada" />
     <span class="lightbox-next" aria-label="Siguiente">&#10095;</span>
   `;
   document.body.appendChild(lightbox);
@@ -262,12 +262,12 @@ function initLightbox() {
   const btnNext = lightbox.querySelector('.lightbox-next');
 
   let currentIndex = 0;
-  const images = Array.from(corteImages);
+  const images = Array.from(galeriaImages);
 
   function openLightbox(index) {
     currentIndex = index;
     lightboxImg.src = images[currentIndex].src;
-    lightboxImg.alt = images[currentIndex].alt || 'Corte ampliado';
+    lightboxImg.alt = images[currentIndex].alt || 'Imagen ampliada';
     lightbox.classList.add('active');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -282,13 +282,13 @@ function initLightbox() {
   function showNext() {
     currentIndex = (currentIndex + 1) % images.length;
     lightboxImg.src = images[currentIndex].src;
-    lightboxImg.alt = images[currentIndex].alt || 'Corte ampliado';
+    lightboxImg.alt = images[currentIndex].alt || 'Imagen ampliada';
   }
 
   function showPrev() {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
     lightboxImg.src = images[currentIndex].src;
-    lightboxImg.alt = images[currentIndex].alt || 'Corte ampliado';
+    lightboxImg.alt = images[currentIndex].alt || 'Imagen ampliada';
   }
 
   images.forEach((img, i) => {
