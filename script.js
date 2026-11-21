@@ -19,6 +19,12 @@ function initMobileMenu() {
   const navLinks = document.getElementById('nav-links');
   if (!toggle || !navLinks) return;
 
+  const closeMenu = () => {
+    navLinks.classList.remove('active');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
     navLinks.classList.toggle('active');
@@ -29,20 +35,19 @@ function initMobileMenu() {
 
   // Cierra el menú al hacer clic en un enlace
   navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      toggle.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeMenu);
   });
 
   // Cierra el menú al hacer clic fuera
   document.addEventListener('click', (e) => {
     if (!navLinks.classList.contains('active')) return;
     if (navLinks.contains(e.target) || toggle.contains(e.target)) return;
-    navLinks.classList.remove('active');
-    toggle.classList.remove('active');
-    toggle.setAttribute('aria-expanded', 'false');
+    closeMenu();
+  });
+
+  // Cierra el menú al hacer scroll
+  window.addEventListener('scroll', () => {
+    if (navLinks.classList.contains('active')) closeMenu();
   });
 }
 
@@ -50,6 +55,9 @@ function initMobileMenu() {
    1. REVELADO DE SECCIONES AL HACER SCROLL
    ============================================================ */
 function initSectionReveal() {
+  // Quita la clase no-js del html (fallback)
+  document.documentElement.classList.remove('no-js');
+
   const sections = document.querySelectorAll('.section');
 
   if (!('IntersectionObserver' in window)) {
@@ -181,6 +189,8 @@ function createWhatsAppFloat() {
    5. LIGHTBOX PARA GALERÍA (cortes + tatuajes)
    ============================================================ */
 function initLightbox() {
+  if (document.querySelector('.lightbox')) return;
+
   const galeriaImages = document.querySelectorAll('.corte-card img');
   if (!galeriaImages.length) return;
 
@@ -354,18 +364,22 @@ function initAgendarForm() {
   const msg = document.getElementById('form-msg');
   const WHATSAPP = '527443754197';
 
-  // Fecha mínima = hoy
-  const hoy = new Date();
-  const yyyy = hoy.getFullYear();
-  const mm = String(hoy.getMonth() + 1).padStart(2, '0');
-  const dd = String(hoy.getDate()).padStart(2, '0');
-  inputFecha.min = `${yyyy}-${mm}-${dd}`;
-
   // Horas válidas: solo en punto, de 9:00 a 19:00 (9 AM a 7 PM)
   const HORAS_VALIDAS = [
     '09:00','10:00','11:00','12:00','13:00',
     '14:00','15:00','16:00','17:00','18:00','19:00'
   ];
+
+  // Actualiza la fecha mínima cada vez que se llama (por si cambia el día)
+  function actualizarMinFecha() {
+    const hoy = new Date();
+    const yyyy = hoy.getFullYear();
+    const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+    const dd = String(hoy.getDate()).padStart(2, '0');
+    inputFecha.min = `${yyyy}-${mm}-${dd}`;
+  }
+
+  actualizarMinFecha();
 
   function horaValida(hora) {
     return HORAS_VALIDAS.includes(hora);
@@ -382,6 +396,9 @@ function initAgendarForm() {
     msg.textContent = texto;
     msg.classList.toggle('error', esError);
   }
+
+  // Recalcular min al enfocar el campo fecha
+  inputFecha.addEventListener('focus', actualizarMinFecha);
 
   inputHora.addEventListener('change', () => {
     if (!horaValida(inputHora.value)) {
@@ -455,6 +472,6 @@ function initAgendarForm() {
 
     setMsg('✅ Abriendo WhatsApp para enviar tu cita...');
     form.reset();
-    inputFecha.min = `${yyyy}-${mm}-${dd}`;
+    actualizarMinFecha();
   });
 }

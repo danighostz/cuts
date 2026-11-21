@@ -31,6 +31,12 @@ body {
   line-height: 1.6;
 }
 
+/* ===== FALLBACK NO-JS ===== */
+.no-js .section {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* ===== FONDOS DECORATIVOS ===== */
 .bg-skulls {
   position: fixed;
@@ -75,7 +81,6 @@ body {
   min-height: 74px;
 }
 
-/* ===== LOGO (2560x1440 → 16:9) ===== */
 .logo {
   display: flex;
   align-items: center;
@@ -95,10 +100,6 @@ body {
 .logo:hover .logo-img {
   transform: scale(1.05);
   filter: drop-shadow(0 0 18px var(--neon));
-}
-
-.logo-text {
-  display: none;
 }
 
 .neon {
@@ -201,7 +202,6 @@ body {
   text-align: center;
 }
 
-/* ===== FONDO ALTERNADO ===== */
 .section:nth-of-type(odd) {
   background-color: var(--negro);
 }
@@ -235,10 +235,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
 }
 
-/* ===== LOGO HERO (2560x1440 → 16:9) ===== */
 .hero-logo {
   width: 640px;
   height: 360px;
@@ -366,42 +364,10 @@ body {
   box-shadow: 0 0 8px rgba(225, 48, 108, 0.6);
 }
 
-/* ===== SERVICIOS CON CALAVERA (941×1672 vertical) ===== */
-.servicios-layout {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
-  align-items: center;
-  max-width: 1200px;
-  width: 100%;
-}
-
-.servicios-col-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.fotocalavera {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  max-height: 620px;
-  object-fit: contain;
-  border-radius: 16px;
-  border: 2px solid rgba(57, 255, 20, 0.35);
-  box-shadow: 0 0 30px rgba(57, 255, 20, 0.25);
-  filter: brightness(0.9) contrast(1.1);
-  display: block;
-}
-
-.servicios-col-grid .services-grid {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
+/* ===== SERVICIOS (6 tarjetas) ===== */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 22px;
   max-width: 1100px;
   width: 100%;
@@ -436,10 +402,6 @@ body {
 
 .service-card:hover::before {
   left: 100%;
-}
-
-.service-icon {
-  display: none;
 }
 
 .service-card h3 {
@@ -488,6 +450,7 @@ body {
   height: 380px;
 }
 
+/* ===== TARJETAS DE GALERÍA ===== */
 .corte-card {
   position: relative;
   border-radius: 14px;
@@ -706,14 +669,6 @@ body {
   max-width: 1000px;
 }
 
-/* ===== RESEÑA ===== */
-.resena-text {
-  font-size: 1.15rem;
-  color: var(--gris);
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-}
-
 /* ===== FOOTER ===== */
 .footer {
   position: relative;
@@ -911,16 +866,9 @@ body {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1200px) {
-  .servicios-layout {
-    grid-template-columns: 1fr 1.5fr;
-  }
   .hero-logo {
     width: 540px;
     height: 304px;
-  }
-  .fotocalavera {
-    max-width: 300px;
-    max-height: 540px;
   }
 }
 
@@ -928,14 +876,6 @@ body {
   .agendar-layout {
     grid-template-columns: 1fr;
     gap: 25px;
-  }
-  .servicios-layout {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-  .fotocalavera {
-    max-width: 280px;
-    max-height: 500px;
   }
   .hero-logo {
     width: 400px;
@@ -946,9 +886,6 @@ body {
     height: 56px;
   }
   .cortes-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .tatuajes-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .tatuajes-grid .corte-card img {
@@ -1081,10 +1018,5 @@ body {
   .social-card-icon {
     width: 50px;
     height: 50px;
-  }
-
-  .fotocalavera {
-    max-width: 100%;
-    max-height: 480px;
   }
 }
